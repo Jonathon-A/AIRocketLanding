@@ -5,8 +5,11 @@ The setup:
 
 At the start of the episode:
 -Spawn at realistic altitude and distance from barge with some randomness (about 7km high and 700m from barge)
+
 -Set realistic approach angle with some randomness 
+
 -Set realistic velocity with some randomness (about 420m/s)
+
 
 Observations:
 -Current booster position
