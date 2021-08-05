@@ -1,0 +1,65 @@
+{
+    "AIRocket": {
+        "checkpoints": [
+            {
+                "steps": 499971,
+                "file_path": "results\\AIRocket4\\AIRocket\\AIRocket-499971.onnx",
+                "reward": -2111.2235194614955,
+                "creation_time": 1625524564.4015224,
+                "auxillary_file_paths": [
+                    "results\\AIRocket4\\AIRocket\\AIRocket-499971.pt"
+                ]
+            },
+            {
+                "steps": 999995,
+                "file_path": "results\\AIRocket4\\AIRocket\\AIRocket-999995.onnx",
+                "reward": -2153.1708984375,
+                "creation_time": 1625525278.6127045,
+                "auxillary_file_paths": [
+                    "results\\AIRocket4\\AIRocket\\AIRocket-999995.pt"
+                ]
+            },
+            {
+                "steps": 1499970,
+                "file_path": "results\\AIRocket4\\AIRocket\\AIRocket-1499970.onnx",
+                "reward": -6182.096466064453,
+                "creation_time": 1625525993.320462,
+                "auxillary_file_paths": [
+                    "results\\AIRocket4\\AIRocket\\AIRocket-1499970.pt"
+                ]
+            },
+            {
+                "steps": 1999976,
+                "file_path": "results\\AIRocket4\\AIRocket\\AIRocket-1999976.onnx",
+                "reward": -2116.374755859375,
+                "creation_time": 1625526708.9195392,
+                "auxillary_file_paths": [
+                    "results\\AIRocket4\\AIRocket\\AIRocket-1999976.pt"
+                ]
+            },
+            {
+                "steps": 2305509,
+                "file_path": "results\\AIRocket4\\AIRocket\\AIRocket-2305509.onnx",
+                "reward": null,
+                "creation_time": 1625527148.579695,
+                "auxillary_file_paths": [
+                    "results\\AIRocket4\\AIRocket\\AIRocket-2305509.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2305509,
+            "file_path": "results\\AIRocket4\\AIRocket.onnx",
+            "reward": null,
+            "creation_time": 1625527148.579695,
+            "auxillary_file_paths": [
+                "results\\AIRocket4\\AIRocket\\AIRocket-2305509.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.0+cu110"
+    }
+}

@@ -1,0 +1,65 @@
+{
+    "AIRocket": {
+        "checkpoints": [
+            {
+                "steps": 6999937,
+                "file_path": "results\\AIRocketFast6\\AIRocket\\AIRocket-6999937.onnx",
+                "reward": -2034.867041015625,
+                "creation_time": 1625687037.3837838,
+                "auxillary_file_paths": [
+                    "results\\AIRocketFast6\\AIRocket\\AIRocket-6999937.pt"
+                ]
+            },
+            {
+                "steps": 7499964,
+                "file_path": "results\\AIRocketFast6\\AIRocket\\AIRocket-7499964.onnx",
+                "reward": null,
+                "creation_time": 1625687816.0647614,
+                "auxillary_file_paths": [
+                    "results\\AIRocketFast6\\AIRocket\\AIRocket-7499964.pt"
+                ]
+            },
+            {
+                "steps": 7999965,
+                "file_path": "results\\AIRocketFast6\\AIRocket\\AIRocket-7999965.onnx",
+                "reward": -2076.3126220703125,
+                "creation_time": 1625688591.9936116,
+                "auxillary_file_paths": [
+                    "results\\AIRocketFast6\\AIRocket\\AIRocket-7999965.pt"
+                ]
+            },
+            {
+                "steps": 8499971,
+                "file_path": "results\\AIRocketFast6\\AIRocket\\AIRocket-8499971.onnx",
+                "reward": -2062.247111002604,
+                "creation_time": 1625689344.488875,
+                "auxillary_file_paths": [
+                    "results\\AIRocketFast6\\AIRocket\\AIRocket-8499971.pt"
+                ]
+            },
+            {
+                "steps": 8623922,
+                "file_path": "results\\AIRocketFast6\\AIRocket\\AIRocket-8623922.onnx",
+                "reward": null,
+                "creation_time": 1625689531.2076318,
+                "auxillary_file_paths": [
+                    "results\\AIRocketFast6\\AIRocket\\AIRocket-8623922.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 8623922,
+            "file_path": "results\\AIRocketFast6\\AIRocket.onnx",
+            "reward": null,
+            "creation_time": 1625689531.2076318,
+            "auxillary_file_paths": [
+                "results\\AIRocketFast6\\AIRocket\\AIRocket-8623922.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.0+cu110"
+    }
+}
