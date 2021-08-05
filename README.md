@@ -4,6 +4,7 @@ Using reinforcement learning to make an agent land a rocket with somewhat realis
 The setup:
 
 At the start of the episode:
+
 -Spawn at realistic altitude and distance from barge with some randomness (about 7km high and 700m from barge)
 
 -Set realistic approach angle with some randomness 
@@ -12,22 +13,37 @@ At the start of the episode:
 
 
 Observations:
+
 -Current booster position
+
 -Current barge position
+
 -Current rotation
+
 -Current throttle
+
 -Current X Gimbal
+
 -Current Y Gimbal
+
 -All of above from previous step
 
+
 Actions:
+
 -Increase or decrease throttle (discrete)
+
 -Change X Gimbal (continuous)
+
 -Change Y Gimbal (continuous)
 
+
 Rewards (at end of episode):
+
 -Negative velocity (slower is better)
+
 -Negative distance between booster and barge (shorter is better)
+
 -Negative angle from upright position (closer to upright is better)
 
 
