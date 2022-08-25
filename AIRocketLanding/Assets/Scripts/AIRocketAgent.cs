@@ -31,15 +31,12 @@ public class AIRocketAgent : Agent
    
     public override void CollectObservations(VectorSensor sensor)
     {
-
-       
         sensor.AddObservation(BoosterCentrePos.position * 0.0001f);
         sensor.AddObservation(BargeCentrePos.position * 0.0001f);
         sensor.AddObservation(transform.rotation);
         sensor.AddObservation(Throttle);
         sensor.AddObservation(GimbalX);
         sensor.AddObservation(GimbalY);
-
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -62,7 +59,6 @@ public class AIRocketAgent : Agent
 
         InputGimbalX = actions.ContinuousActions[0] * 20f;
         InputGimbalY = actions.ContinuousActions[1] * 20f;
-
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
