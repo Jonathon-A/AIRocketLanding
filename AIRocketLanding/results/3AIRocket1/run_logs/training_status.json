@@ -1,0 +1,65 @@
+{
+    "AIRocket": {
+        "checkpoints": [
+            {
+                "steps": 66999987,
+                "file_path": "results\\3AIRocket1\\AIRocket\\AIRocket-66999987.onnx",
+                "reward": -1612.64873046875,
+                "creation_time": 1665730581.2185786,
+                "auxillary_file_paths": [
+                    "results\\3AIRocket1\\AIRocket\\AIRocket-66999987.pt"
+                ]
+            },
+            {
+                "steps": 67499941,
+                "file_path": "results\\3AIRocket1\\AIRocket\\AIRocket-67499941.onnx",
+                "reward": -1609.1328648158483,
+                "creation_time": 1665730833.6065333,
+                "auxillary_file_paths": [
+                    "results\\3AIRocket1\\AIRocket\\AIRocket-67499941.pt"
+                ]
+            },
+            {
+                "steps": 67999983,
+                "file_path": "results\\3AIRocket1\\AIRocket\\AIRocket-67999983.onnx",
+                "reward": -1541.454541015625,
+                "creation_time": 1665731082.7903094,
+                "auxillary_file_paths": [
+                    "results\\3AIRocket1\\AIRocket\\AIRocket-67999983.pt"
+                ]
+            },
+            {
+                "steps": 68499939,
+                "file_path": "results\\3AIRocket1\\AIRocket\\AIRocket-68499939.onnx",
+                "reward": -1612.2038330078126,
+                "creation_time": 1665731336.369217,
+                "auxillary_file_paths": [
+                    "results\\3AIRocket1\\AIRocket\\AIRocket-68499939.pt"
+                ]
+            },
+            {
+                "steps": 68666431,
+                "file_path": "results\\3AIRocket1\\AIRocket\\AIRocket-68666431.onnx",
+                "reward": -1567.3364501953124,
+                "creation_time": 1665731422.775691,
+                "auxillary_file_paths": [
+                    "results\\3AIRocket1\\AIRocket\\AIRocket-68666431.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 68666431,
+            "file_path": "results\\3AIRocket1\\AIRocket.onnx",
+            "reward": -1567.3364501953124,
+            "creation_time": 1665731422.775691,
+            "auxillary_file_paths": [
+                "results\\3AIRocket1\\AIRocket\\AIRocket-68666431.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.0+cu110"
+    }
+}

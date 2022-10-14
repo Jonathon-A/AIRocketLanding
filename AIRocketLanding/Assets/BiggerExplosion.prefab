@@ -33932,7 +33932,7 @@ GameObject:
   - component: {fileID: 827604317214989306}
   - component: {fileID: 464053052584438717}
   m_Layer: 0
-  m_Name: BigerExplosion
+  m_Name: BiggerExplosion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

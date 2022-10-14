@@ -6,7 +6,6 @@ using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 public class AIRocketAgent : Agent
 {
-    private bool EpisodeBegun;
     public Transform BargeCentrePos;
     public override void OnEpisodeBegin()
     {
@@ -18,14 +17,10 @@ public class AIRocketAgent : Agent
         transform.rotation = Quaternion.Euler(-72 + Random.Range(-1f, 1f), 0, 0);
         RB.velocity = -transform.forward * (423f + Random.Range(-10f, 10f));
         RB.angularVelocity = Vector3.zero;
-        EpisodeBegun = true;
-        
-        
-        GimbalX = 0f;
-        GimbalY = 0f;
+
         Throttle = 0f;
         
-        BoosterCentrePos.localRotation = Quaternion.Euler(GimbalX, GimbalY, 0);
+        BoosterCentrePos.localRotation = Quaternion.Euler(0, 0, 0);
 
     }
    
@@ -34,51 +29,49 @@ public class AIRocketAgent : Agent
         sensor.AddObservation(BoosterCentrePos.position * 0.0001f);
         sensor.AddObservation(BargeCentrePos.position * 0.0001f);
         sensor.AddObservation(transform.rotation);
-        sensor.AddObservation(Throttle);
-        sensor.AddObservation(GimbalX);
-        sensor.AddObservation(GimbalY);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
-        
-        //Debug.Log("d1 " + actions.DiscreteActions[0]);
-      //  Debug.Log("c1 " + actions.ContinuousActions[0]);
-        //Debug.Log("c2 " + actions.ContinuousActions[1]);
 
-        if (actions.DiscreteActions[0] == 0)
-        {
-            Throttle += 0.1f * 20f * Time.fixedDeltaTime;
+        //Debug.Log("c1 " + actions.ContinuousActions[0] + "  c2 " + actions.ContinuousActions[1] + "  c3 " + actions.ContinuousActions[2]);
 
-        }
-        else
-        {
-            Throttle -= 0.1f * 20f * Time.fixedDeltaTime;
-        }
+
+       
+        Throttle = actions.ContinuousActions[0];
+
         Throttle = Mathf.Clamp(Throttle, 0f, 1f);
 
-        InputGimbalX = actions.ContinuousActions[0] * 20f;
-        InputGimbalY = actions.ContinuousActions[1] * 20f;
+        float GimbalX = actions.ContinuousActions[1] * 10f;
+        float GimbalY = actions.ContinuousActions[2] * 10f;
+
+        GimbalX = (GimbalX > 180) ? GimbalX - 360 : GimbalX;
+        GimbalX = Mathf.Clamp(GimbalX, -10f, 10f);
+
+        GimbalY = (GimbalY > 180) ? GimbalY - 360 : GimbalY;
+        GimbalY = Mathf.Clamp(GimbalY, -10f, 10f);
+
+        BoosterCentrePos.localRotation = Quaternion.Euler(GimbalX, GimbalY, 0);
+
+        RB.AddForceAtPosition(BoosterCentrePos.forward * Throttle * 781000 * Time.fixedDeltaTime, BoosterCentrePos.position, ForceMode.Impulse);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
     {
 
         ActionSegment<float> ContinuousActions = actionsOut.ContinuousActions;
-        ActionSegment<int> DiscreteActions = actionsOut.DiscreteActions;
 
         if (Input.GetKey(KeyCode.Space))
         {
-            DiscreteActions[0] = 0;
-
-        }
-        else
+            ContinuousActions[0] = 1f;
+        }else
         {
-            DiscreteActions[0] = 1;
+            ContinuousActions[0] = 0f;
         }
        
-        ContinuousActions[0] = Input.GetAxis("Horizontal");
+        
         ContinuousActions[1] = Input.GetAxis("Vertical");
+        ContinuousActions[2] = Input.GetAxis("Horizontal");
     }
 
     private Rigidbody RB;
@@ -86,15 +79,12 @@ public class AIRocketAgent : Agent
     {
         RB = gameObject.GetComponent<Rigidbody>();
     }
+
     public Transform BoosterCentrePos;
     public float Throttle = 0f;
     public ParticleSystem Exhaust;
     public ParticleSystem Smoke;
 
-    private float GimbalX;
-    private float GimbalY;
-    private float InputGimbalX;
-    private float InputGimbalY;
 
     public AudioSource Sound;
 
@@ -104,21 +94,6 @@ public class AIRocketAgent : Agent
         Velocity = RB.velocity.magnitude;
         AngularVelocity = RB.angularVelocity.magnitude;
 
-        if (!EpisodeBegun)
-        {
-
-        
-        GimbalX = BoosterCentrePos.localEulerAngles.x + InputGimbalX * Time.fixedDeltaTime;
-        GimbalY = BoosterCentrePos.localEulerAngles.y + InputGimbalY * Time.fixedDeltaTime;
-
-        GimbalX = (GimbalX > 180) ? GimbalX - 360 : GimbalX;
-        GimbalX = Mathf.Clamp(GimbalX, -10f,10f);
-
-        GimbalY = (GimbalY > 180) ? GimbalY - 360 : GimbalY;
-        GimbalY = Mathf.Clamp(GimbalY, -10f, 10f);
-
-        BoosterCentrePos.localRotation = Quaternion.Euler(GimbalX, GimbalY, 0);
-        }
 
         if (GameController.GetIsRender())
         {
@@ -154,27 +129,12 @@ public class AIRocketAgent : Agent
             var ExhaustEmmission = Exhaust.emission;
             ExhaustEmmission.enabled = false;
         }
-
-        if (!EpisodeBegun)
-        {
-
-        
-        RB.AddForceAtPosition(BoosterCentrePos.forward * Throttle * 781000 * Time.fixedDeltaTime, BoosterCentrePos.position, ForceMode.Impulse);
+       
+        //Debug.Log(StepCount + " " + MaxStep);
+        if (StepCount >= MaxStep - 5)
+        {     
+            deathReward();
         }
-
-        if (StepCount >= MaxStep - 1)
-        {
-
-            AddReward(-Vector3.Distance(BoosterCentrePos.position, BargeCentrePos.position));
-            AddReward(-Velocity);
-
-            AddReward(-Vector3.Angle(transform.forward, Vector3.up));
-
-         //   Debug.Log(GetCumulativeReward());
-            EndEpisode();
-        }
-        EpisodeBegun = false;
-
 
     }
 
@@ -201,17 +161,22 @@ public class AIRocketAgent : Agent
             {
                 Instantiate(ExplosionObject, BoosterCentrePos.position, new Quaternion(0, 0, 0, 0));
             }
-          
 
-            AddReward(-Vector3.Distance(BoosterCentrePos.position, BargeCentrePos.position));
-            AddReward(-Velocity);
-
-            AddReward(-Vector3.Angle(transform.forward, Vector3.up));
-
-         //   Debug.LogWarning(GetCumulativeReward());
-             EndEpisode();
+            deathReward();
         }
        
+    }
+
+    private void deathReward() {
+        float total = -Vector3.Distance(BoosterCentrePos.position, BargeCentrePos.position);
+        total -= Velocity;
+        total -= -Vector3.Angle(transform.forward, Vector3.up);
+
+        SetReward(total);
+
+        //Debug.LogWarning(total);
+        EndEpisode();
+
     }
 
 
